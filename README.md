@@ -24,6 +24,9 @@ Abre Git Bash Here o una terminal dentro de la carpeta del proyecto.
 
 Ejecuta:
 npm install
+
+Dentro de la carpeta backend:
+
 npm run dev
 
 Abre Postman y prueba las tres rutas:
