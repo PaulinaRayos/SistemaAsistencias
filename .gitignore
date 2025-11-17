@@ -7,3 +7,4 @@ frontend/node_modules/
 .env
 .DS_Store
 *.log
+/backend/nbproject/private/

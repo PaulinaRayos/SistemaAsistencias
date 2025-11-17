@@ -7,6 +7,13 @@ const calcularDistancia = require('../utils/distancia');
 // ----------------------------------------------
 //  REGISTRAR ASISTENCIA
 // ----------------------------------------------
+function normalizar(texto) {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 async function registrarAsistencia(req, res) {
   try {
     const { matricula, materia, ubicacion } = req.body;
@@ -23,14 +30,14 @@ async function registrarAsistencia(req, res) {
 
     // Obtener horario específico
     const horario = sistemaHorariosMock.obtenerHorario(matricula)
-      .find(h => h.materia === materia);
+  .find(h => normalizar(h.materia) === normalizar(materia));
 
     if (!horario)
       return res.status(400).json({ mensaje: 'Horario no encontrado para esta materia' });
 
-    // ----------------------------------------------
+    
     // 3. Verificar si YA registró asistencia hoy
-    // ----------------------------------------------
+
     const inicioDia = new Date();
     inicioDia.setHours(0, 0, 0, 0);
 
@@ -50,9 +57,8 @@ async function registrarAsistencia(req, res) {
       });
     }
 
-    // ----------------------------------------------
     // 4. Validar ubicación (igual que antes)
-    // ----------------------------------------------
+
     const aulaActual = aulasMock.find(a => a.aula === horario.aula);
 
     if (!aulaActual)
@@ -73,9 +79,8 @@ async function registrarAsistencia(req, res) {
       });
     }
 
-    // ----------------------------------------------
-    // 5. Determinar si es "Presente" o "Retardo"
-    // ----------------------------------------------
+    // 5. Determinar si es "Presente" o "Tarde"
+
     const ahora = new Date();
     const [h, m] = horario.horaInicio.split(":").map(Number);
 
@@ -85,11 +90,10 @@ async function registrarAsistencia(req, res) {
     const diffMin = (ahora - horaInicioClase) / 1000 / 60; // minutos de diferencia
 
     let estado = "Presente";
-    if (diffMin > 10) estado = "Retardo";
+    if (diffMin > 10) estado = "Tarde";
 
-    // ----------------------------------------------
     // 6. Registrar asistencia
-    // ----------------------------------------------
+    
     const nueva = new Asistencia({
       matricula,
       nombreAlumno: usuario.nombre,
@@ -115,9 +119,8 @@ async function registrarAsistencia(req, res) {
   }
 }
 
-// ----------------------------------------------
 //  LISTAR ASISTENCIAS
-// ----------------------------------------------
+
 async function listarAsistencias(req, res) {
   console.log("Ruta /api/asistencias activada");
 

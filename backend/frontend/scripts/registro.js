@@ -20,23 +20,32 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
   const status = document.getElementById('status');
 
   try {
-    const ubicacion = await obtenerUbicacion();
-	
-	console.log("UBICACIÓN DEL DISPOSITIVO:", ubicacion);
-	
-    const resp = await fetch('http://localhost:3000/api/asistencias', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        matricula,
-        materia,
-        ubicacion
-      })
-    });
+   const resp = await fetch('http://localhost:3000/api/asistencias', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ matricula, materia, ubicacion })
+});
 
-    const data = await resp.json();
-	console.log("RESPUESTA DEL BACKEND:", data);
-    status.innerText = data.mensaje || JSON.stringify(data);
+let data;
+
+// Intentar convertir a JSON aunque sea 400/500
+try {
+  data = await resp.json();
+} catch (e) {
+  console.error("No se pudo parsear JSON del backend");
+  data = { mensaje: "Error inesperado del servidor" };
+}
+
+// Mostrar siempre lo que regresó el backend
+console.log("RESPUESTA DEL BACKEND:", data);
+
+if (!resp.ok) {
+  status.innerText = "Error" + (data.mensaje || "Error desconocido");
+  return;
+}
+
+status.innerText = "Bien" + data.mensaje;
+
   } catch (err) {
     status.innerText = 'Error: ' + (err.message || err);
   }

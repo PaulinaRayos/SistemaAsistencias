@@ -1,43 +1,84 @@
-// mock simple: materias por matricula/hora
-//const horarios = [
- // { matricula: '182233', materia: 'Arquitectura', dia: 'Lunes', horaInicio: '09:00', horaFin: '10:30' }
-//];
-
-//function verificarHorario(matricula, materia) {
-  // versión simplificada: siempre retorna true para pruebas
- // return true;
-//}
-
-//module.exports = { verificarHorario };
-
+// Normalizar texto (quita acentos y minúsculas/mayúsculas)
+function normalizar(texto) {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
 
 const horarios = {
   "182233": [
     {
       materia: "Metodologías Ágiles",
       aula: "B12",
+      horaInicio: "12:30",
+      horaFin: "14:30",
+      dias: ["Lunes", "Miércoles"]
+    },
+    {
+      materia: "Administración de Proyectos",
+      aula: "B12",
+      horaInicio: "09:00",
+      horaFin: "10:30",
+      dias: ["Martes", "Jueves"]
+    }
+  ],
+
+  "247045": [
+    {
+      materia: "Arquitectura Empresarial",
+      aula: "B12",
+      horaInicio: "13:00",
+      horaFin: "14:00",
+      dias: ["Lunes", "Miércoles", "Viernes"]
+    },
+    {
+      materia: "Administración de Proyectos",
+      aula: "B12",
+      horaInicio: "11:00",
+      horaFin: "12:30",
+      dias: ["Martes"]
+    }
+  ],
+
+  "225330": [
+    {
+      materia: "Administración de Proyectos",
+      aula: "B12",
       horaInicio: "10:00",
       horaFin: "11:00",
       dias: ["Lunes", "Miércoles"]
+    },
+    {
+      materia: "Arquitectura Empresarial",
+      aula: "B12",
+      horaInicio: "13:00",
+      horaFin: "14:30",
+      dias: ["Lunes","Martes", "Jueves"]
     }
   ]
 };
 
-function verificarHorario(matricula, materia) {
+// ------------------------------
+// Validar horario en tiempo real
+// ------------------------------
+function verificarHorario(matricula, materiaIngresada) {
   const hoy = new Date();
-  const horaActual = hoy.toTimeString().slice(0,5);
-  const diaSemana = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"][hoy.getDay()];
+  const horaActual = hoy.toTimeString().slice(0, 5);
+  const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][hoy.getDay()];
 
   const lista = horarios[matricula] || [];
-  
-// Buscar el horario correcto
+
+  const materiaNormalizada = normalizar(materiaIngresada);
+
+  // Comparación flexible de materias
   const horario = lista.find(h =>
-    h.materia === materia &&
+    normalizar(h.materia) === materiaNormalizada &&
     h.dias.includes(diaSemana) &&
     horaActual >= h.horaInicio &&
     horaActual <= h.horaFin
   );
-  
+
   return horario || null;
 }
 
