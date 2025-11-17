@@ -1,0 +1,77 @@
+/* registro.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 92%;
+    max-width: 420px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+}
+
+.label {
+    display: block;
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+button {
+    margin-top: 16px;
+    background-color: #0067c5;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+button:hover {
+    background-color: #0057a8;
+}
+
+#status {
+    margin-top: 14px;
+    font-size: 15px;
+    min-height: 20px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 400px) {
+    h1 { font-size: 20px; }
+    button { font-size: 16px; padding: 12px; }
+    input { padding: 10px; }
+}
