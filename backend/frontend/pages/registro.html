@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Registro de Asistencia</title>
+
+  <!-- ruta desde pages/ hacia styles/ -->
+  <link rel="stylesheet" href="../styles/registro.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Registrar Asistencia</h1>
+
+    <label for="matricula" class="label">Matrícula</label>
+    <input id="matricula" placeholder="Ej. 182233" />
+
+    <label for="materia" class="label">Materia</label>
+    <input id="materia" placeholder="Ej. Metodologías Ágiles" />
+
+    <button id="btnRegistrar">Registrar asistencia</button>
+
+    <p id="status"></p>
+  </div>
+
+  <!-- ruta desde pages/ hacia scripts/ -->
+  <script src="../scripts/registro.js"></script>
+</body>
+</html>
