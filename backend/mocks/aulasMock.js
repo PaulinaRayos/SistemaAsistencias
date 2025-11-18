@@ -8,8 +8,8 @@ module.exports = [
   },
   {
     aula: "B5",
-    lat: 27.4920,
-    lng: -109.9480,
+    lat: 27.4731414,
+    lng: -109.9629675,
     radio: 20 // metros de tolerancia
   },
   {

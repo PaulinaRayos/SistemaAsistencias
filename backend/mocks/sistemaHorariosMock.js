@@ -44,14 +44,14 @@ const horarios = {
   "225330": [
     {
       materia: "Administración de Proyectos",
-      aula: "B12",
-      horaInicio: "10:00",
-      horaFin: "11:00",
+      aula: "B5",
+      horaInicio: "18:00",
+      horaFin: "19:00",
       dias: ["Lunes", "Miércoles"]
     },
     {
       materia: "Arquitectura Empresarial",
-      aula: "B12",
+      aula: "B5",
       horaInicio: "13:00",
       horaFin: "14:30",
       dias: ["Lunes","Martes", "Jueves"]
