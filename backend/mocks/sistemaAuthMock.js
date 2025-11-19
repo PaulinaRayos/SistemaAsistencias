@@ -11,9 +11,11 @@ const usuarios = [
   { matricula: '182233', nombre: 'Paulina Rodríguez', rol: 'Alumno' },
   { matricula: '10001', nombre: 'Jose Robles', rol: 'Profesor' },
 
-  // Usuarios nuevos que pediste
+  // Usuarios nuevos
   { matricula: '247045', nombre: 'Cesar Adrian Duran Avalos', rol: 'Alumno' },
-  { matricula: '225330', nombre: 'Valeria Guadalupe Encinas', rol: 'Alumno' }
+  { matricula: '225330', nombre: 'Valeria Guadalupe Encinas', rol: 'Alumno' },
+  { matricula: '111111', nombre: 'Pepe', rol: 'Alumno' },//usuario sin horario para pruebas
+  { matricula: '000000', nombre: 'Pepe', rol: 'Alumno' }//usuario sin horario para pruebas
 ];
 
 // Validar por matrícula

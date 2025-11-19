@@ -23,6 +23,35 @@ async function registrarAsistencia(req, res) {
     if (!usuario)
       return res.status(401).json({ mensaje: 'Usuario no autenticado' });
 
+
+ // ---------------- VALIDACIÓN DE HORARIOS ----------------
+    console.log("🔄 Solicitando horarios del alumno:", matricula);
+
+    let horariosAlumno;
+
+    try {
+      horariosAlumno = sistemaHorariosMock.obtenerHorario(matricula);
+      console.log("Horarios obtenidos correctamente:", horariosAlumno);
+    } catch (error) {
+      // ECU03_CP02 — Error al conectar con el mock
+      console.error("Error al sincronizar horarios:", error);
+
+      return res.status(500).json({
+        mensaje: "Error al sincronizar horarios, reintente más tarde"
+      });
+    }
+
+    // ECU03_CP03 — Matrícula no existe en el sistema institucional
+    if (!horariosAlumno || horariosAlumno.length === 0) {
+      console.warn("Matrícula no encontrada en sistema institucional:", matricula);
+
+      return res.status(404).json({
+        mensaje: "No se encontraron horarios para esta matrícula"
+      });
+    }
+
+
+
     // 2. Validar horario
     const horarioValido = sistemaHorariosMock.verificarHorario(matricula, materia);
     if (!horarioValido)

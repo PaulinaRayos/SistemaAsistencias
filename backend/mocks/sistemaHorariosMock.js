@@ -40,6 +40,10 @@ const horarios = {
       dias: ["Martes"]
     }
   ],
+  
+  "111111": [],
+  
+  "000000": [],
 
   "225330": [
     {
@@ -83,6 +87,10 @@ function verificarHorario(matricula, materiaIngresada) {
 }
 
 function obtenerHorario(matricula) {
+	if (matricula === "000000") {
+    throw new Error("Simulación de fallo en mock");//para prueba de falla del mock
+  }
+
   return horarios[matricula] || [];
 }
 
