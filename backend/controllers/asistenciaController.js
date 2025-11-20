@@ -67,10 +67,11 @@ async function registrarAsistencia(req, res) {
     
     // 3. Verificar si YA registró asistencia hoy
 
-    const inicioDia = new Date();
+    const ahoraLocal = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000));
+    const inicioDia = new Date(ahoraLocal);
     inicioDia.setHours(0, 0, 0, 0);
 
-    const finDia = new Date();
+    const finDia = new Date(ahoraLocal);
     finDia.setHours(23, 59, 59, 999);
 
     const yaExiste = await Asistencia.findOne({
@@ -110,7 +111,8 @@ async function registrarAsistencia(req, res) {
 
     // 5. Determinar si es "Presente" o "Tarde"
 
-    const ahora = new Date();
+    //const ahora = new Date();
+    const ahora = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000));
     const [h, m] = horario.horaInicio.split(":").map(Number);
 
     const horaInicioClase = new Date();
