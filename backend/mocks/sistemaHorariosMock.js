@@ -9,10 +9,10 @@ function normalizar(texto) {
 const horarios = {
   "182233": [
     {
-      materia: "Metodologías Ágiles",
+      materia: "arquitectura",
       aula: "B12",
-      horaInicio: "12:30",
-      horaFin: "14:30",
+      horaInicio: "18:15",
+      horaFin: "19:15",
       dias: ["Lunes", "Miércoles"]
     },
     {
@@ -28,8 +28,8 @@ const horarios = {
     {
       materia: "Arquitectura Empresarial",
       aula: "B12",
-      horaInicio: "17:00",
-      horaFin: "19:00",
+      horaInicio: "18:50",
+      horaFin: "19:30",
       dias: ["Lunes", "Miércoles", "Viernes"]
     },
     {
