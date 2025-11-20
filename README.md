@@ -29,56 +29,8 @@ Dentro de la carpeta backend:
 
 npm run dev
 
-Abre Postman y prueba las tres rutas:
 
-GET http://localhost:3000/
+Registrar asistencia
+URL: http://localhost:3000/pages/registro.html
 
-POST http://localhost:3000/api/asistencias
 
-GET http://localhost:3000/api/asistencias
-
-Si ves el mensaje "Asistencia registrada correctamente", significa que tu API está funcionando correctamente.
-
-Probar:
-
-Ruta principal (GET)
-Probar conexión del servidor
-GET http://localhost:3000/
-
-Respuesta esperada:
-"API Sistema de Asistencias ITSON"
-
-Registrar asistencia (POST)
-URL:
-POST http://localhost:3000/api/asistencias
-
-Body (JSON):
-{
-"matricula": "182233",
-"nombreAlumno": "Paulina Rodríguez",
-"materia": "Metodologías Ágiles",
-"ubicacion": { "lat": 27.492, "lng": -109.948 },
-"estado": "Presente"
-}
-
-Respuesta esperada:
-{ "mensaje": "Asistencia registrada correctamente" }
-
-Consultar asistencias (GET)
-URL:
-GET http://localhost:3000/api/asistencias
-
-Respuesta esperada:
-{
-"mensaje": "Ruta de asistencias funcionando correctamente",
-"total": 1,
-"datos": [
-{
-"matricula": "182233",
-"nombreAlumno": "Paulina Rodríguez",
-"materia": "Metodologías Ágiles",
-"fecha": "2025-11-10T07:06:14.576Z",
-"estado": "Presente"
-}
-]
-}
