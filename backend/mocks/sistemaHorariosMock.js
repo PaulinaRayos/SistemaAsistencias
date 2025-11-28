@@ -28,8 +28,8 @@ const horarios = {
     {
       materia: "Arquitectura Empresarial",
       aula: "B12",
-      horaInicio: "17:00",
-      horaFin: "19:00",
+      horaInicio: "00:00",
+      horaFin: "05:00",
       dias: ["Lunes", "Miércoles", "Viernes"]
     },
     {
@@ -52,9 +52,9 @@ const horarios = {
     {
       materia: "Arquitectura Empresarial",
       aula: "B12",
-      horaInicio: "13:00",
-      horaFin: "14:30",
-      dias: ["Lunes","Martes", "Jueves"]
+      horaInicio: "00:00",
+      horaFin: "02:30",
+      dias: ["Lunes","Martes", "Jueves", "Viernes"]
     }
   ]
 };

@@ -15,18 +15,15 @@ const registrarUsuario = async (req, res) => {
   try {
     const { nombre, correo, contraseña } = req.body;
 
-    // Validar datos
     if (!nombre || !correo || !contraseña) {
       return res.status(400).json({ mensaje: 'Todos los campos son obligatorios' });
     }
 
-    // Verificar si ya existe
     const existe = await Usuario.findOne({ correo });
     if (existe) {
       return res.status(400).json({ mensaje: 'El correo ya está registrado' });
     }
 
-    // Crear y guardar
     const nuevoUsuario = new Usuario({ nombre, correo, contraseña });
     await nuevoUsuario.save();
 
@@ -36,4 +33,34 @@ const registrarUsuario = async (req, res) => {
   }
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario };
+// ----------------------------------------------------
+// NUEVO: INICIAR SESIÓN
+// ----------------------------------------------------
+const iniciarSesion = async (req, res) => {
+  try {
+    const { correo, contraseña } = req.body;
+
+    // 1. Buscar usuario por correo
+    const usuario = await Usuario.findOne({ correo });
+    if (!usuario) {
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    }
+
+    // 2. Validar contraseña (Comparación directa por ahora, idealmente usar bcrypt)
+    if (usuario.contraseña !== contraseña) {
+      return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
+    }
+
+    // 3. Responder éxito
+    res.json({ 
+      mensaje: 'Inicio de sesión exitoso', 
+      usuario: { nombre: usuario.nombre, correo: usuario.correo } 
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error en el servidor' });
+  }
+};
+
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion };

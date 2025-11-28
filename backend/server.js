@@ -1,28 +1,25 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require('path');  // <<< AGREGAR ESTO
+const path = require('path');
 const connectDB = require('./database/mongo_connection');
 
 const asistenciaRoutes = require('./routes/asistenciaRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const aulaRoutes = require('./routes/aulaRoutes'); 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Servir frontend desde /frontend
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 connectDB();
 
 app.use('/api/asistencias', asistenciaRoutes);
 app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/aulas', aulaRoutes); 
 
-// ruta simple
-app.get('/', (req, res) => res.send('API Sistema de Asistencias ITSON'));
-
-// Middleware para manejar errores
 app.use((err, req, res, next) => {
   console.error('Error del servidor:', err);
   res.status(500).json({ mensaje: 'Error interno del servidor' });

@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+}
+
+.nav {
+    background-color: #0057a8;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-link {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.btn-logout {
+    background: #c00;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.panel-form, .panel-lista {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.panel-form { flex: 1; min-width: 300px; }
+.panel-lista { flex: 2; min-width: 400px; }
+
+h3 { margin-top: 0; color: #333; }
+
+label { display: block; margin: 10px 0 5px; font-size: 14px; font-weight: bold; color: #555; }
+input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+
+.row { display: flex; gap: 10px; }
+.row div { flex: 1; }
+
+button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    background: #0073e6;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover { background: #005bb5; }
+
+/* Tabla */
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+th { background-color: #f8f9fa; color: #333; }
+
+.btn-delete {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
