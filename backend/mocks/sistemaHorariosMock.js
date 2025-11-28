@@ -9,10 +9,10 @@ function normalizar(texto) {
 const horarios = {
   "182233": [
     {
-      materia: "arquitectura",
+      materia: "Metodologías Ágiles",
       aula: "B12",
-      horaInicio: "18:15",
-      horaFin: "19:15",
+      horaInicio: "12:30",
+      horaFin: "14:30",
       dias: ["Lunes", "Miércoles"]
     },
     {
@@ -28,8 +28,8 @@ const horarios = {
     {
       materia: "Arquitectura Empresarial",
       aula: "B12",
-      horaInicio: "18:50",
-      horaFin: "19:30",
+      horaInicio: "00:00",
+      horaFin: "05:00",
       dias: ["Lunes", "Miércoles", "Viernes"]
     },
     {
@@ -40,25 +40,21 @@ const horarios = {
       dias: ["Martes"]
     }
   ],
-  
-  "111111": [],
-  
-  "000000": [],
 
   "225330": [
     {
       materia: "Administración de Proyectos",
-      aula: "B5",
-      horaInicio: "18:00",
-      horaFin: "19:00",
+      aula: "B12",
+      horaInicio: "10:00",
+      horaFin: "11:00",
       dias: ["Lunes", "Miércoles"]
     },
     {
       materia: "Arquitectura Empresarial",
-      aula: "B5",
-      horaInicio: "13:00",
-      horaFin: "14:30",
-      dias: ["Lunes","Martes", "Jueves"]
+      aula: "B12",
+      horaInicio: "00:00",
+      horaFin: "02:30",
+      dias: ["Lunes","Martes", "Jueves", "Viernes"]
     }
   ]
 };
@@ -87,10 +83,6 @@ function verificarHorario(matricula, materiaIngresada) {
 }
 
 function obtenerHorario(matricula) {
-	if (matricula === "000000") {
-    throw new Error("Simulación de fallo en mock");//para prueba de falla del mock
-  }
-
   return horarios[matricula] || [];
 }
 

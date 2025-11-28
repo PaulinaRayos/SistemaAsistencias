@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Asistencias</title>
+    <link rel="stylesheet" href="../styles/asistencias.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="nav">
+        <h2>Sistema ITSON - Admin</h2>
+        <button onclick="cerrarSesion()" class="btn-logout">Cerrar Sesión</button>
+    </div>
+
+    <div class="container">
+        <h1>Bitácora y Reportes</h1>
+
+        <div class="filtros-container">
+            <input type="text" id="filtroMatricula" placeholder="Buscar Matrícula...">
+            <input type="text" id="filtroMateria" placeholder="Buscar Materia...">
+            <select id="filtroEstado">
+                <option value="">Todos los estados</option>
+                <option value="Presente">Presente</option>
+                <option value="Tarde">Tarde</option>
+                <option value="Ausente">Ausente</option>
+            </select>
+            <button onclick="aplicarFiltros()">Filtrar</button>
+            <button onclick="descargarPDF()" class="btn-pdf">📄 Descargar PDF (SDRAI-5)</button>
+        </div>
+
+        <div class="metricas-panel">
+            <div class="card">
+                <h3>Total Registros</h3>
+                <p id="totalReg">0</p>
+            </div>
+            <div class="card present">
+                <h3>A Tiempo</h3>
+                <p id="totalPresente">0</p>
+            </div>
+            <div class="card late">
+                <h3>Retardos</h3>
+                <p id="totalTarde">0</p>
+            </div>
+        </div>
+        
+        <div id="reporteImprimible">
+            <h3 style="text-align:center; display:none;" id="tituloReporte">Reporte de Asistencias ITSON</h3>
+            <table id="tablaAsistencias">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Matrícula</th>
+                        <th>Alumno</th>
+                        <th>Materia</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../scripts/asistencias.js"></script>
+</body>
+</html>
