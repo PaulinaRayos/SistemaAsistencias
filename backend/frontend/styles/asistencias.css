@@ -146,3 +146,18 @@ th {
 
 .estado-tarde { color: #d9534f; font-weight: bold; }
 .estado-presente { color: #5cb85c; font-weight: bold; }
+.estado-falta {
+    color: #a94442; /* Rojo oscuro para la falta */
+    font-weight: bold;
+    background-color: #f2dede; /* Fondo suave para resaltar */
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+
+
+.logo-itson {
+    display: block;
+    width: 180px;       
+    margin: 0 auto;     
+}

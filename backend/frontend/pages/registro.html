@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Registro de Asistencia</title>
-
-  <!-- ruta desde pages/ hacia styles/ -->
   <link rel="stylesheet" href="../styles/registro.css">
 </head>
 <body>
@@ -16,12 +14,15 @@
 
   <div class="container">
     <h1>Registrar Asistencia</h1>
+    <p id="mensajeClase"></p>
+
+    <p><strong>Clase seleccionada:</strong> <span id="claseSeleccionadaText"></span></p>
 
     <label for="matricula" class="label">Matrícula</label>
-    <input id="matricula" placeholder="Ej. 182233" />
+    <input id="matricula" readonly />
 
     <label for="materia" class="label">Materia</label>
-    <input id="materia" placeholder="Ej. Metodologías Ágiles" />
+    <input id="materia" readonly />
 
     <button id="btnRegistrar">Registrar asistencia</button>
 

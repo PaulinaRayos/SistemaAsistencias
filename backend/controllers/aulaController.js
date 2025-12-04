@@ -1,46 +1,30 @@
-const Aula = require('../models/Aula');
+// controllers/aulaController.js
 
-// Listar todas las aulas
-const obtenerAulas = async (req, res) => {
+// Importa el objeto con las aulas
+const aulasMock = require('../mocks/aulasMock');
+
+// Devolver aulas como ARRAY para que el frontend pueda hacer forEach
+const obtenerAulasMock = (req, res) => {
   try {
-    const aulas = await Aula.find();
-    res.json(aulas);
+    const aulasArray = Object.entries(aulasMock).map(([aula, datos]) => ({
+      aula,
+      ...datos
+    }));
+
+    res.json(aulasArray);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener aulas', error });
+    console.error("Error al obtener aulas mock:", error);
+    res.status(500).json({ mensaje: 'Error al obtener aulas mock' });
   }
 };
 
-// Crear nueva aula
-const crearAula = async (req, res) => {
-  try {
-    const { nombre, edificio, lat, lng, radio } = req.body;
-
-    if (!nombre || !lat || !lng) {
-      return res.status(400).json({ mensaje: 'Nombre, Latitud y Longitud son obligatorios' });
-    }
-
-    const nuevaAula = new Aula({ nombre, edificio, lat, lng, radio });
-    await nuevaAula.save();
-
-    res.status(201).json({ mensaje: 'Aula registrada exitosamente', aula: nuevaAula });
-  } catch (error) {
-    // Error de duplicado (código 11000 en Mongo)
-    if (error.code === 11000) {
-      return res.status(400).json({ mensaje: 'Ya existe un aula con ese nombre' });
-    }
-    res.status(500).json({ mensaje: 'Error al registrar aula', error });
-  }
+// (Opcional) Si algún día quieres agregar aulas, pero no necesario hoy
+const crearAula = (req, res) => {
+  res.status(501).json({ mensaje: "Agregar aulas no está habilitado en mock" });
 };
 
-// Eliminar aula
-const eliminarAula = async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Aula.findByIdAndDelete(id);
-    res.json({ mensaje: 'Aula eliminada correctamente' });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al eliminar aula' });
-  }
+const eliminarAula = (req, res) => {
+  res.status(501).json({ mensaje: "Eliminar aulas no está habilitado en mock" });
 };
 
-module.exports = { obtenerAulas, crearAula, eliminarAula };
+module.exports = { obtenerAulasMock, crearAula, eliminarAula };
