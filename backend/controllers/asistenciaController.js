@@ -17,6 +17,20 @@ function normalizar(texto) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+// ----------------------------------------------------
+// FUNCIÓN AUXILIAR: VALIDA SI LA CLASE EXISTE EN ESE DÍA
+// ----------------------------------------------------
+function validarDiaDeClase(materia, matriculaAlumno, fecha) {
+  const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][fecha.getDay()];
+
+  const horariosAlumno = sistemaHorariosMock.obtenerHorario(matriculaAlumno) || [];
+
+  return horariosAlumno.some(h =>
+    h.materia === materia && h.dias.includes(diaSemana)
+  );
+}
+
+
 // ----------------------------------------------
 //  REGISTRAR ASISTENCIA
 // ----------------------------------------------
@@ -161,8 +175,29 @@ async function obtenerMateriasPorMaestro(req, res) {
   }
 }
 
+// Asegúrate de que estas funciones auxiliares estén definidas en tu asistenciaController.js
+// o en un archivo auxiliar que ya se esté importando.
+
+// ----------------------------------------------------
+// FUNCIÓN AUXILIAR: VALIDA SI LA CLASE EXISTE EN ESE DÍA
+// Requiere: sistemaHorariosMock y que sus alumnos tengan horarios definidos.
+// ----------------------------------------------------
+function validarDiaDeClase(materia, matriculaAlumno, fecha) {
+  // Convierte el día de la semana de la fecha seleccionada (0=Dom, 1=Lun, etc.)
+  const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][fecha.getDay()];
+
+  // Obtiene todos los horarios del alumno (desde sistemaHorariosMock)
+  const horariosAlumno = sistemaHorariosMock.obtenerHorario(matriculaAlumno) || [];
+
+  // Retorna true si encuentra AL MENOS UN horario que coincida con la materia Y el día de la semana
+  return horariosAlumno.some(h =>
+    h.materia === materia && h.dias.includes(diaSemana)
+  );
+}
+
+
 // =============================================================
-//  OBTENER ASISTENCIAS POR GRUPO CON FALTAS
+// OBTENER ASISTENCIAS POR GRUPO CON FALTAS
 // =============================================================
 async function obtenerAsistenciasPorGrupo(req, res) {
   try {
@@ -175,15 +210,10 @@ async function obtenerAsistenciasPorGrupo(req, res) {
       });
     }
 
-    // 2. Definir el rango de fecha para el día específico
-    const fechaClase = new Date(fecha);
-    const inicioDia = new Date(fechaClase);
-    inicioDia.setHours(0, 0, 0, 0); // Inicio del día (00:00:00)
-    const finDia = new Date(fechaClase);
-    finDia.setHours(23, 59, 59, 999); // Fin del día (23:59:59)
+    const fechaString = fecha; // 'YYYY-MM-DD' 
+    const fechaClase = new Date(fechaString + 'T12:00:00');
 
-    // 3. Obtener la lista de MATRÍCULAS de todos los alumnos de ese grupo/materia
-    // Se usa el mock que importaste: obtenerAlumnosPorMateria
+    // 2. Obtener la lista de MATRÍCULAS de todos los alumnos de ese grupo/materia
     const alumnosDelGrupo = obtenerAlumnosPorMateria(rfcMaestro, materia);
 
     if (!alumnosDelGrupo || alumnosDelGrupo.length === 0) {
@@ -191,6 +221,24 @@ async function obtenerAsistenciasPorGrupo(req, res) {
         mensaje: `No se encontraron alumnos en el grupo de ${materia} para el maestro ${rfcMaestro}.`
       });
     }
+
+    //  Verificar si la materia se imparte ese día
+    const matriculaAlumnoMuestra = alumnosDelGrupo[0]; // Tomamos el primer alumno como muestra
+    if (!validarDiaDeClase(materia, matriculaAlumnoMuestra, fechaClase)) {
+      // Si el día de la semana no es un día de clase, devolvemos un error 400
+      const diaSemana = fechaClase.toLocaleDateString('es-ES', { weekday: 'long' });
+      return res.status(400).json({
+        mensaje: `El grupo de ${materia} no tiene clase el día ${diaSemana}. Seleccione una fecha válida.`
+      });
+    }
+
+
+
+    // 3. Definir el rango de fecha para el día específico (solo se ejecuta si la validación pasa)
+    const inicioDia = new Date(fechaClase);
+    inicioDia.setHours(0, 0, 0, 0); // Inicio del día (00:00:00)
+    const finDia = new Date(fechaClase);
+    finDia.setHours(23, 59, 59, 999); // Fin del día (23:59:59)
 
     // 4. Obtener las asistencias REGISTRADAS para esa materia y rango de fecha
     const asistenciasRegistradas = await Asistencia.find({
