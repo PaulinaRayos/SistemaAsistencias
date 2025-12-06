@@ -9,7 +9,7 @@ function normalizar(texto) {
 
 const horarios = {
   "A001": [
-    { materia: "Metodologías Ágiles", aula: "B12", horaInicio: "12:30", horaFin: "14:00", dias: ["Lunes", "Miércoles"] },
+    { materia: "Metodologías Ágiles", aula: "B12", horaInicio: "12:30", horaFin: "17:00", dias: ["Lunes", "Viernes"] },
     { materia: "Matemáticas Discretas", aula: "B14", horaInicio: "09:00", horaFin: "10:30", dias: ["Martes", "Jueves"] }
   ],
   "182233": [

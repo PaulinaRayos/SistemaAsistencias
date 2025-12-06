@@ -79,20 +79,29 @@ function estaEnHorario(horario) {
 }
 
 // Mostrar módulos
+// Mostrar módulos
 function mostrarModulos() {
     modulosClases.innerHTML = '';
+
     materiasAlumno.forEach(clase => {
         const div = document.createElement('div');
         div.className = 'moduloClase';
+
+        // Formatear días: ["Lunes","Miércoles"] -> "Lunes y Miércoles"
+        const dias = Array.isArray(clase.dias) ? clase.dias.join(', ') : '';
+
         div.innerHTML = `
       <h3>${clase.materia}</h3>
-      <p>Horario: ${clase.horaInicio} - ${clase.horaFin}</p>
+      <p><strong>Días:</strong> ${dias || 'Sin días asignados'}</p>
+      <p><strong>Horario:</strong> ${clase.horaInicio} - ${clase.horaFin}</p>
       <button class="btnRegistrar">Registrar Asistencia</button>
       <p class="status"></p>
     `;
+
         modulosClases.appendChild(div);
     });
 }
+
 
 // Registrar asistencia
 modulosClases.addEventListener('click', async (e) => {

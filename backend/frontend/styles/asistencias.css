@@ -1,163 +1,244 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f5f7;
+  margin: 0;
+  color: #333;
 }
 
-.nav {
-    background-color: #0057a8;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Barra superior */
+.topbar {
+  background: linear-gradient(135deg, #0057a8, #003d7a);
+  color: #ffffff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.nav button {
-    background: #c00;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 4px;
+.logo-itson {
+  width: 160px;
+  height: auto;
 }
 
+.topbar-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Contenedor principal */
 .container {
-    padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 20px auto 40px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.titulo-pagina {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  color: #003d7a;
 }
 
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #0073e6;
-    color: white;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-.estado-tarde {
-    color: #d9534f;
-    font-weight: bold;
-}
-
-.estado-presente {
-    color: #5cb85c;
-    font-weight: bold;
-}
+/* Filtros */
 .filtros-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  align-items: center;
 }
 
-.filtros-container input, .filtros-container select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    flex: 1;
+.filtros-container input,
+.filtros-container select {
+  padding: 8px;
+  border: 1px solid #d0d6e0;
+  border-radius: 4px;
+  min-width: 150px;
+  font-size: 0.9rem;
 }
 
-.filtros-container button {
-    padding: 8px 15px;
-    cursor: pointer;
-    background: #0057a8;
-    color: white;
-    border: none;
-    border-radius: 4px;
+.filtros-container label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Botones */
+.btn-primary,
+.btn-pdf,
+.btn-logout {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #0057a8;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #003d7a;
 }
 
 .btn-pdf {
-    background-color: #28a745 !important; /* Verde */
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.btn-pdf:hover {
+  background-color: #208838;
 }
 
 .btn-logout {
-    background: #c00;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 4px;
+  background: #c0392b;
+  color: #ffffff;
+}
+
+.btn-logout:hover {
+  background: #a5281d;
+}
+
+.botones {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e3e6ec;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #0057a8;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f7f9fb;
+}
+
+tr:hover {
+  background-color: #edf3ff;
+}
+
+/* Estados */
+.estado-presente {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.estado-tarde {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.estado-falta {
+  color: #a94442;
+  font-weight: bold;
+  background-color: #fdecea;
+  padding: 2px 5px;
+  border-radius: 4px;
 }
 
 /* Métricas */
 .metricas-panel {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
 }
 
 .card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    flex: 1;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  flex: 1 1 200px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+  font-size: 0.85rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.card.present p {
+  color: #2e7d32;
+}
+
+.card.late p {
+  color: #d9534f;
+}
+
+.card.falta p {
+  color: #a94442;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .filtros-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botones {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
-.card h3 { margin: 0 0 10px 0; font-size: 14px; color: #666; }
-.card p { font-size: 24px; font-weight: bold; margin: 0; color: #333; }
-
-.card.present p { color: #5cb85c; }
-.card.late p { color: #d9534f; }
-
-/* Tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+#reporteImprimible {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #0073e6;
-    color: white;
-}
-
-.estado-tarde { color: #d9534f; font-weight: bold; }
-.estado-presente { color: #5cb85c; font-weight: bold; }
-.estado-falta {
-    color: #a94442; /* Rojo oscuro para la falta */
-    font-weight: bold;
-    background-color: #f2dede; /* Fondo suave para resaltar */
-    padding: 2px 5px;
-    border-radius: 3px;
-}
-
-
-
-.logo-itson {
-    display: block;
-    width: 180px;       
-    margin: 0 auto;     
+/* Opcional: limitar el ancho máximo pensando en A4 (~800-900px) */
+#reporteImprimible table {
+  width: 100%;
 }

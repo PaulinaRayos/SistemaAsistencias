@@ -1,77 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Asistencias - ITSON</title>
-    <link rel="stylesheet" href="../styles/asistencias.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte de Asistencias - ITSON</title>
+  <link rel="stylesheet" href="../styles/asistencias.css">
 </head>
 
 <body>
-    <header>
-        <img src="../assets/logo_itson.png" alt="ITSON" class="logo-itson">
-    </header>
+  <header class="topbar">
+    <img src="../assets/logo_itson.png" alt="ITSON" class="logo-itson">
+    <h1 class="topbar-title">Reporte de Asistencias</h1>
+  </header>
 
-    <div class="container">
-        <h1 id="tituloReporte">Reporte de Asistencias</h1>
+  <div class="container">
+    <h2 id="tituloReporte" class="titulo-pagina">Reporte de Asistencias</h2>
 
-        <!-- Filtros -->
-        <div class="filtros">
-            <label for="filtroMatricula">Matrícula:</label>
-            <input type="text" id="filtroMatricula" placeholder="Filtrar por matrícula" oninput="aplicarFiltros()">
+    <!-- Filtros -->
+    <div class="filtros-container">
+      <input type="text" id="filtroMatricula" placeholder="Filtrar por matrícula">
 
-            <label for="filtroMateria">Clase:</label>
-            <select id="filtroMateria" onchange="aplicarFiltros()">
-                <option value="">Todas</option>
-            </select>
+      <select id="filtroMateria"></select>
 
-            <label for="filtroFecha">Fecha:</label>
-            <input type="date" id="filtroFecha" onchange="aplicarFiltros()">
-            <label for="filtroEstado">Estado:</label>
-            <select id="filtroEstado" onchange="aplicarFiltros()">
-                <option value="">Todos</option>
-                <option value="Presente">Presente</option>
-                <option value="Tarde">Tarde</option>
-                <option value="Falta">Falta</option>            
-            </select>
+      <label for="filtroFechaInicio">Desde:</label>
+      <input type="date" id="filtroFechaInicio">
 
-        </div>
+      <label for="filtroFechaFin">Hasta:</label>
+      <input type="date" id="filtroFechaFin">
 
-        <!-- Tabla de asistencias -->
-        <div id="reporteImprimible">
-            <table id="tablaAsistencias">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Matrícula</th>
-                        <th>Nombre</th>
-                        <th>Materia</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+      <select id="filtroEstado">
+        <option value="">Todos</option>
+        <option value="Presente">Presente</option>
+        <option value="Tarde">Tarde</option>
+        <option value="Falta">Falta</option>
+        <option value="Ausente">Ausente</option>
+      </select>
 
-        <!-- Métricas -->
-        <div class="metricas">
-            <p>Total registros: <span id="totalReg">0</span></p>
-            <p>Total presente: <span id="totalPresente">0</span></p>
-            <p>Total tarde: <span id="totalTarde">0</span></p>
-            <p>Total faltas: <span id="totalFalta">0</span></p>
-        </div>
-
-        <!-- Botones -->
-        <div class="botones">
-            <button onclick="descargarPDF()">Descargar PDF</button>
-            <button onclick="cerrarSesion()">Cerrar sesión</button>
-        </div>
+      <button class="btn-primary" onclick="aplicarFiltros()">Buscar</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="../../mocks/gruposMock.js"></script>
-    <script src="../scripts/asistencias.js"></script>
-</body>
+    <!-- Tabla de asistencias -->
+    <div id="reporteImprimible">
+      <table id="tablaAsistencias">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Matrícula</th>
+            <th>Nombre</th>
+            <th>Materia</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
+    <!-- Métricas -->
+    <div class="metricas-panel">
+      <div class="card">
+        <h3>Total registros</h3>
+        <p id="totalReg">0</p>
+      </div>
+      <div class="card present">
+        <h3>Presentes</h3>
+        <p id="totalPresente">0</p>
+      </div>
+      <div class="card late">
+        <h3>Tarde</h3>
+        <p id="totalTarde">0</p>
+      </div>
+      <div class="card falta">
+        <h3>Faltas</h3>
+        <p id="totalFalta">0</p>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones">
+      <button class="btn-pdf" onclick="descargarPDF()">Descargar PDF</button>
+      <button class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="../../mocks/gruposMock.js"></script>
+  <script src="../scripts/asistencias.js"></script>
+</body>
 </html>
