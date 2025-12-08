@@ -16,7 +16,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         if (res.ok) {
             mensaje.style.color = 'green';
-            mensaje.innerText = 'Login exitoso, redirigiendo...';
+            mensaje.innerText = 'Inicio de sesión exitoso, redirigiendo...';
 
             // Guardar sesión (simple)
             localStorage.setItem('usuario', JSON.stringify(data.usuario));
