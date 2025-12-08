@@ -30,7 +30,13 @@ Dentro de la carpeta backend:
 npm run dev
 
 
-Registrar asistencia
-URL: http://localhost:3000/pages/registro.html
+Iniciar sesion:
+URL: http://localhost:3000/pages/login.html
 
+Alumno:
+ID: A012345678
+Contraseña: Alumno123
 
+Maestro:
+ID: M012345678
+Contraseña: Maestro123
