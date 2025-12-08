@@ -154,33 +154,123 @@ async function cargarAsistencias() {
 
 // PDF
 function descargarPDF() {
-    const elemento = document.getElementById('reporteImprimible');
-    const titulo = document.getElementById('tituloReporte');
-    titulo.style.display = 'block';
+    if (todasLasAsistencias.length === 0) {
+        alert("Primero debe aplicar los filtros de Materia y Rango para generar el reporte.");
+        return;
+    }
 
-    const opciones = {
-        margin: 10,
-        filename: 'reporte_asistencias_itson.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: {
-            scale: 2,
-            // importante: limitar el ancho al del contenedor
-            // si tu contenedor es de ~1000px, úsalo aquí
-            width: elemento.offsetWidth
+    // Obtener información del reporte para el título
+    const materia = document.getElementById('filtroMateria').value;
+    const inicio = document.getElementById('filtroFechaInicio').value;
+    const fin = document.getElementById('filtroFechaFin').value;
+
+
+    let calcPresente = 0;
+    let calcTarde = 0;
+    let calcFalta = 0;
+
+    // Aplicamos los filtros secundarios (matrícula y estado)
+    const matriculaFiltro = document.getElementById('filtroMatricula').value.toLowerCase();
+    const estadoFiltro = document.getElementById('filtroEstado').value;
+
+    const datosFiltradosParaPDF = todasLasAsistencias.filter(item => {
+        const matriculaItem = (item.matricula || '').toLowerCase();
+        const matchMatricula = matriculaItem.includes(matriculaFiltro);
+        const matchEstado = estadoFiltro === '' || item.estado === estadoFiltro;
+
+        // Clasificamos el estado para el reporte final de métricas
+        if (matchMatricula && matchEstado) {
+            if (item.estado === 'Presente') calcPresente++;
+            else if (item.estado === 'Tarde') calcTarde++;
+            else if (item.estado === 'Falta' || item.estado === 'Ausente') calcFalta++;
+        }
+        return matchMatricula && matchEstado;
+    });
+
+    const totalReg = datosFiltradosParaPDF.length;
+
+   
+    // Preparar los datos y la cabecera
+    const columns = ["Fecha", "Matrícula", "Nombre", "Materia", "Estado"];
+
+    const rows = todasLasAsistencias.map(item => [
+        new Date(item.fecha).toLocaleString(),
+        item.matricula,
+        item.nombreAlumno || 'Desconocido',
+        item.materia,
+        item.estado
+    ]);
+
+    // Crear instancia de jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('portrait', 'mm', 'a4');
+
+    // const doc = new window.jspdf.jsPDF('portrait', 'mm', 'a4');
+
+
+    // Definir estilos para el encabezado
+    const primaryColor = '#0057a8'; // Azul ITSON
+    const title = `Reporte de Asistencias - ${materia}`;
+    const subtitle = `Rango: ${inicio} a ${fin}`;
+
+    let yPos = 20; // Posición inicial
+
+    // Agregar contenido (Título y Subtítulo)
+    doc.setFontSize(14);
+    doc.text(title, 14, yPos); // Posición 14mm desde el borde, 20mm desde arriba
+    yPos += 6;
+    doc.setFontSize(10);
+    doc.text(subtitle, 14, yPos);
+    yPos += 4; // Posición de inicio de tabla (30mm)
+
+    // Generar la tabla usando autoTable
+    doc.autoTable({
+        head: [columns],
+        body: rows,
+        startY: yPos, // Inicia la tabla debajo del subtítulo
+        theme: 'striped',
+        styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+        headStyles: {
+            fillColor: primaryColor, // Color del encabezado de la tabla
+            textColor: 255, // Blanco
+            fontStyle: 'bold'
         },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['css', 'legacy'] }
-    };
 
-    html2pdf()
-        .set(opciones)
-        .from(elemento)
-        .save()
-        .then(() => {
-            titulo.style.display = 'none';
-        });
+        columnStyles: {
+            // Asegurar que la columna de estado sea estrecha si es necesario
+            4: { cellWidth: 20 }
+        },
+    });
+
+
+    // AGREGAR TOTALES USANDO LA POSICIÓN FINAL DE LA TABLA
+
+    // Accedemos a la posición Y final del último elemento dibujado por autoTable
+    const finalY = doc.lastAutoTable.finalY;
+
+    // Si la tabla no existe o está vacía, usamos 35mm como fallback.
+    const startMetricsY = (finalY || yPos) + 10;
+
+    // Manejo de salto de página si los totales caen muy abajo
+    if (startMetricsY > 270) {
+        doc.addPage();
+        startMetricsY = 20;
+    }
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`TOTALES DEL REPORTE:`, 14, startMetricsY);
+
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Total registros: ${totalReg}`, 14, startMetricsY + 6);
+    doc.text(`Presentes: ${calcPresente}`, 14, startMetricsY + 12);
+    doc.text(`Tarde: ${calcTarde}`, 14, startMetricsY + 18);
+    doc.text(`Faltas: ${calcFalta}`, 14, startMetricsY + 24);
+
+
+    // 5. Guardar el archivo
+    doc.save(`reporte_asistencias_${materia}_${inicio}_a_${fin}.pdf`);
 }
-
 
 // Cerrar sesión
 function cerrarSesion() {

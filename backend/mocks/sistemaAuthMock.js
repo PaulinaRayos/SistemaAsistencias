@@ -15,7 +15,7 @@ const usuarios = [
 
   // Módulo ITSON institucional
 
-  { matricula: "A001", nombre: "Carlos Rivera", rol: "Alumno", contraseña: "123" },
+  { matricula: "A012345678", nombre: "Carlos Rivera", rol: "Alumno", contraseña: "Alumno123" },
   { matricula: "A002", nombre: "Ana Martínez", rol: "Alumno", contraseña: "123" },
   { matricula: "A003", nombre: "Roberto González", rol: "Alumno", contraseña: "123" },
   { matricula: "A004", nombre: "Sofía Hernández", rol: "Alumno", contraseña: "123" },
@@ -35,7 +35,7 @@ const usuarios = [
 
 
 
-  { matricula: "M001", nombre: "Luis Herrera", rol: "Maestro", contraseña: "123" },
+  { matricula: "M012345678", nombre: "Luis Herrera", rol: "Maestro", contraseña: "Maestro123" },
   { matricula: "ADMIN1", nombre: "Administrador ITSON", rol: "Admin", contraseña: "123" },
 
 

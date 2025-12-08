@@ -1,244 +1,324 @@
+/* ------------------------------------------------------------------ */
+/* asistencias.css (VERSIÓN COMPLETA Y CORREGIDA PARA IMPRESIÓN) */
+/* ------------------------------------------------------------------ */
+
 * {
-  box-sizing: border-box;
+ box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f3f5f7;
-  margin: 0;
-  color: #333;
+ font-family: Arial, sans-serif;
+ background-color: #f3f5f7;
+ margin: 0;
+ color: #333;
 }
 
 /* Barra superior */
 .topbar {
-  background: linear-gradient(135deg, #0057a8, #003d7a);
-  color: #ffffff;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+ background: linear-gradient(135deg, #0057a8, #003d7a);
+ color: #ffffff;
+ padding: 10px 20px;
+ display: flex;
+ align-items: center;
+ gap: 15px;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .logo-itson {
-  width: 160px;
-  height: auto;
+ width: 160px;
+ height: auto;
 }
 
 .topbar-title {
-  font-size: 1.2rem;
-  font-weight: 500;
+ font-size: 1.2rem;
+ font-weight: 500;
 }
 
 /* Contenedor principal */
 .container {
-  padding: 20px;
-  max-width: 1100px;
-  margin: 20px auto 40px;
+ padding: 20px;
+ max-width: 1100px;
+ margin: 20px auto 40px;
 }
 
 .titulo-pagina {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.4rem;
-  color: #003d7a;
+ margin-top: 0;
+ margin-bottom: 15px;
+ font-size: 1.4rem;
+ color: #003d7a;
 }
 
 /* Filtros */
 .filtros-container {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  align-items: center;
+ display: flex;
+ gap: 10px;
+ margin-bottom: 20px;
+ flex-wrap: wrap;
+ background: #ffffff;
+ padding: 15px;
+ border-radius: 8px;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+ align-items: center;
 }
 
 .filtros-container input,
 .filtros-container select {
-  padding: 8px;
-  border: 1px solid #d0d6e0;
-  border-radius: 4px;
-  min-width: 150px;
-  font-size: 0.9rem;
+ padding: 8px;
+ border: 1px solid #d0d6e0;
+ border-radius: 4px;
+ min-width: 150px;
+ font-size: 0.9rem;
 }
 
 .filtros-container label {
-  font-size: 0.85rem;
-  color: #555;
+ font-size: 0.85rem;
+ color: #555;
 }
 
 /* Botones */
 .btn-primary,
 .btn-pdf,
 .btn-logout {
-  padding: 8px 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
+ padding: 8px 16px;
+ cursor: pointer;
+ border: none;
+ border-radius: 4px;
+ font-size: 0.9rem;
+ font-weight: 600;
 }
 
 .btn-primary {
-  background: #0057a8;
-  color: #ffffff;
+ background: #0057a8;
+ color: #ffffff;
 }
 
 .btn-primary:hover {
-  background: #003d7a;
+ background: #003d7a;
 }
 
 .btn-pdf {
-  background-color: #28a745;
-  color: #ffffff;
+ background-color: #28a745;
+ color: #ffffff;
 }
 
 .btn-pdf:hover {
-  background-color: #208838;
+ background-color: #208838;
 }
 
 .btn-logout {
-  background: #c0392b;
-  color: #ffffff;
+ background: #c0392b;
+ color: #ffffff;
 }
 
 .btn-logout:hover {
-  background: #a5281d;
+ background: #a5281d;
 }
 
 .botones {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
+ margin-top: 20px;
+ display: flex;
+ gap: 10px;
+ justify-content: flex-end;
 }
 
-/* Tabla */
+/* ---------------------------------------------------- */
+/* REGLAS DE TABLA PARA VISUALIZACIÓN EN PANTALLA */
+/* ---------------------------------------------------- */
+
 table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ width: 100%;
+ border-collapse: collapse;
+ background: #ffffff;
+ border-radius: 8px; /* Bordes redondeados solo para la pantalla */
+ overflow: hidden; /* Ocultar scroll horizontal solo para la pantalla */
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#reporteImprimible {
+ background: #ffffff;
+ padding: 10px;
+ border-radius: 8px;
+  /* Mantenemos overflow visible para la tabla en la impresión */
 }
 
 th,
 td {
-  padding: 10px 12px;
-  text-align: left;
-  border-bottom: 1px solid #e3e6ec;
-  font-size: 0.9rem;
+ padding: 10px 12px;
+ text-align: left;
+ border-bottom: 1px solid #e3e6ec;
+ font-size: 0.9rem;
 }
 
 th {
-  background-color: #0057a8;
-  color: #ffffff;
-  font-weight: 600;
+ background-color: #0057a8;
+ color: #ffffff;
+ font-weight: 600;
 }
 
 tr:nth-child(even) {
-  background-color: #f7f9fb;
+ background-color: #f7f9fb;
 }
 
 tr:hover {
-  background-color: #edf3ff;
+ background-color: #edf3ff;
 }
 
 /* Estados */
 .estado-presente {
-  color: #2e7d32;
-  font-weight: bold;
+ color: #2e7d32;
+ font-weight: bold;
 }
 
 .estado-tarde {
-  color: #d9534f;
-  font-weight: bold;
+ color: #d9534f;
+ font-weight: bold;
 }
 
 .estado-falta {
-  color: #a94442;
-  font-weight: bold;
-  background-color: #fdecea;
-  padding: 2px 5px;
-  border-radius: 4px;
+ color: #a94442;
+ font-weight: bold;
+ background-color: #fdecea;
+ padding: 2px 5px;
+ border-radius: 4px;
 }
 
 /* Métricas */
 .metricas-panel {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 20px 0;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 15px;
+ margin: 20px 0;
 }
 
 .card {
-  background: #ffffff;
-  padding: 12px;
-  border-radius: 8px;
-  flex: 1 1 200px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+ background: #ffffff;
+ padding: 12px;
+ border-radius: 8px;
+ flex: 1 1 200px;
+ text-align: center;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .card h3 {
-  margin: 0 0 6px 0;
-  font-size: 0.85rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+ margin: 0 0 6px 0;
+ font-size: 0.85rem;
+color: #666;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
 }
 
 .card p {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin: 0;
-  color: #333;
+ font-size: 1.4rem;
+ font-weight: bold;
+ margin: 0;
+ color: #333;
 }
 
 .card.present p {
-  color: #2e7d32;
+ color: #2e7d32;
 }
 
 .card.late p {
-  color: #d9534f;
+ color: #d9534f;
 }
 
 .card.falta p {
-  color: #a94442;
+ color: #a94442;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .topbar {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .filtros-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .botones {
-    flex-direction: column;
-    align-items: stretch;
-  }
+ .topbar {
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
 }
 
-#reporteImprimible {
-  background: #ffffff;
-  padding: 10px;
-  border-radius: 8px;
-  overflow: hidden;
+ .filtros-container {
+ flex-direction: column;
+ align-items: stretch;
 }
 
-/* Opcional: limitar el ancho máximo pensando en A4 (~800-900px) */
-#reporteImprimible table {
-  width: 100%;
+ .botones {
+ flex-direction: column;
+ align-items: stretch;
+ }
+}
+
+
+/* ---------------------------------------------------------------------------------- */
+/*  AJUSTES CLAVE PARA LA GENERACIÓN DE PDF (@MEDIA PRINT)  */
+/* ---------------------------------------------------------------------------------- */
+
+@media print {
+    /* --- 1. CONFIGURACIÓN DE CONTENEDOR Y MARGENES --- */
+    .container {
+        /* CRÍTICO: Eliminar margen superior para que la tabla empiece arriba */
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Ocultar elementos de UI y filtros */
+    .topbar, .filtros-container, .botones, .metricas-panel {
+        display: none !important;
+    }
+    
+    /* Contenedor del Reporte: Simplificar y asegurar flujo */
+    #reporteImprimible {
+        padding: 0 !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        border-radius: 0 !important;
+    }
+
+    /* --- 2. CONFIGURACIÓN DE TABLA PARA IMPRESIÓN --- */
+    table {
+        border-radius: 0 !important; 
+        box-shadow: none !important;
+        overflow: visible !important; /* CRÍTICO */
+        border-collapse: collapse;
+        
+        display: table;
+        table-layout: fixed; /* Ayuda a que html2canvas mida el ancho */
+        width: 100%;
+    }
+    
+    /* Filas y Celdas: Simplificar bordes, fondos y tamaño de texto */
+    th, td {
+        /* Usamos borde sólido para la impresión */
+        border: 1px solid #000 !important; 
+        padding: 6px 8px !important;
+        font-size: 10pt !important;
+        
+        /* Asegurar que la altura se calcule correctamente */
+        height: auto !important;
+        line-height: 1.2 !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        
+        /* Eliminar fondos/colores problemáticos */
+        background: white !important;
+        color: #000 !important;
+    }
+    
+    /* Anular fondos alternos y hover */
+    tr:nth-child(even), tr:hover {
+        background: white !important;
+    }
+    
+    /* Estados: Asegurar que se muestren en negro/texto plano sin fondos de estado */
+    .estado-falta, .estado-tarde, .estado-presente {
+        color: #000 !important;
+        background: white !important;
+    }
+
+    /* Asegurar que la cabecera se mantenga */
+    #tablaAsistencias thead {
+        display: table-header-group;
+    }
+
+    /* Asegurar que las imágenes sean pequeñas */
+    .logo-itson {
+        max-width: 100px;
+    }
 }

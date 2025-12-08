@@ -8,7 +8,7 @@ function normalizar(texto) {
 }
 
 const horarios = {
-  "A001": [
+  "A012345678": [
     { materia: "Metodologías Ágiles", aula: "B12", horaInicio: "12:30", horaFin: "17:00", dias: ["Lunes", "Viernes"] },
     { materia: "Matemáticas Discretas", aula: "B14", horaInicio: "09:00", horaFin: "10:30", dias: ["Martes", "Jueves"] }
   ],
@@ -49,7 +49,7 @@ function obtenerHorario(matricula) {
 
 function obtenerMateriasPorMaestro(matricula) {
   const grupos = {
-    "M001": { "Metodologías Ágiles": ["182233", "247045"], "Administración de Proyectos": ["225330", "182233"] },
+    "M012345678": { "Metodologías Ágiles": ["182233", "247045"], "Administración de Proyectos": ["225330", "182233"] },
     "10001": { "Arquitectura Empresarial": ["247045", "225330"] }
   };
 
