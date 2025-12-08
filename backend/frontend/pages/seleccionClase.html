@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seleccionar Clase - ITSON</title>
   <link rel="stylesheet" href="../styles/seleccionClase.css">
 </head>
+
 <body>
+
+  <header class="header">
+    <img src="../assets/logo_itson.png" alt="ITSON" class="logo-itson">
+    <h1 class="topbar-title">Registro de Asistencias</h1>
+  </header>
+
   <div class="container">
-    <h1>Selecciona la clase para registrar asistencia</h1>
+    <h2>Selecciona la clase para registrar asistencia</h1>
 
-    <div id="mensaje" class="mensaje"></div>
+      <div id="mensaje" class="mensaje"></div>
 
-    <div id="modulosClases"></div> <!-- Aquí se cargarán los módulos -->
+      <div id="modulosClases"></div> <!-- Aquí se cargarán los módulos -->
 
-    <button id="cerrarSesion">Cerrar sesión</button>
+      <button id="cerrarSesion">Cerrar sesión</button>
   </div>
 
-  
-  <script src="../../mocks/sistemaHorariosMock.js"></script> 
+
+  <script src="../../mocks/sistemaHorariosMock.js"></script>
   <script src="../scripts/seleccionClase.js"></script>
 </body>
+
 </html>

@@ -10,7 +10,27 @@ body {
     text-align: center;
 }
 
-h1 {
+.header {
+    background: linear-gradient(135deg, #0057a8, #003d7a);
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo-itson {
+    width: 160px;
+    height: auto;
+}
+
+.topbar-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+h2 {
     color: #003d7a;
     margin-bottom: 20px;
 }
