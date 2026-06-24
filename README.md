@@ -1,42 +1,47 @@
-SDRAI - Sistema de Registro de Asistencias ITSON
+# SDRAI - ITSON Attendance Tracking System 
 
-Proyecto desarrollado en Node.js + Express + MongoDB, correspondiente al Sprint 1 del sistema SDRAI (Sistema de Registro de Asistencias ITSON).
+An automated and secure attendance registration ecosystem engineered for ITSON (Instituto Tecnológico de Sonora). Built with an asynchronous, decoupled architecture using Node.js, Express, and MongoDB, this system maps institutional workflows under an efficient Model-View-Controller (MVC) architectural design pattern.
 
-Este módulo incluye:
+This iteration represents full feature delivery executed under the Scrum Agile Methodology Framework, delivering functional production slices over iterative Sprints.
 
--API para registrar asistencias.
--Validaciones básicas mediante mocks de autenticación y horarios.
--Conexión a MongoDB
--Pruebas funcionales con Postman.
+## System Architecture & Backend Topography
 
+The platform decouples operational domains into clear structural layers:
 
-Antes de ejecutar el proyecto asegúrate de tener instalado:
+* **`models/` (Data Schema Layer):** Manages persistent data representations for domain entities (Asistencia.js, Aula.js, Usuario.js) via Mongoose / MongoDB validation schemas.
+* **`controllers/` (Business Logic Orchestration):** Processes core HTTP requests, orchestrates data flow, and executes attendance criteria through functional modules (asistenciaController.js, aulaController.js, usuarioController.js).
+* **`routes/` (REST API Routing Endpoints):** Exposes decoupled endpoint patterns mapping structural resources cleanly (asistenciaRoutes.js, aulaRoutes.js, authRoutes.js).
+* **`mocks/` (Infrastructure Simulation Layer):** Simulates institutional external authentications and active scheduling limits (sistemaAuthMock.js, sistemaHorariosMock.js) to guarantee validation integrity.
+* **`frontend/` (Presentation Views):** Lightweight client layer driving dynamic DOM manipulations and fetch calls via native asynchronous JavaScript modules (asistencias.js, login.js).
 
--Node.js
--npm
--MongoDB (local o Atlas)
--Postman
+## Tech Stack & Implementation Matrix
 
-Instalación y ejecución
+* **Runtime Environment:** Node.js
+* **Backend Framework:** Express.js (REST API Pattern)
+* **Database Solution:** MongoDB (Persistent non-relational storage)
+* **Environment Configuration:** Secure variables managed through .env wrappers
+* **Testing Methodologies:** Automated Postman test suites and mock data orchestration layers
 
+## Operational Endpoints & Testing Credentials
 
-Abre Git Bash Here o una terminal dentro de la carpeta del proyecto.
+The system includes functional authentication views to manage different user roles:
 
-Ejecuta:
-npm install
+### Available Target Viewports
+* **Authentication Portal:** http://localhost:3000/pages/login.html
 
-Dentro de la carpeta backend:
+### Mock Test Environments
+* **Student Access Profile (Alumno):**
+    * **ID / User Identifier:** A012345678
+    * **Credential Password:** Alumno123
+* **Faculty Access Profile (Maestro):**
+    * **ID / User Identifier:** M012345678
+    * **Credential Password:** Maestro123
 
-npm run dev
+## Installation & Deployment Guide
 
-
-Iniciar sesion:
-URL: http://localhost:3000/pages/login.html
-
-Alumno:
-ID: A012345678
-Contraseña: Alumno123
-
-Maestro:
-ID: M012345678
-Contraseña: Maestro123
+1. Clone this repository to your local directory.
+2. Open your terminal at the root path and execute package installation:
+   npm install
+3. Navigate into the backend/ directory and spin up the developmental pipeline:
+   npm run dev
+4. Configure local .env database strings to enable active persistent synchronization.
